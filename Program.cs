@@ -1,33 +1,12 @@
-﻿// See https://aka.ms/new-console-template for more information
-//Console.WriteLine("Hello, World!");
+﻿﻿// See https://aka.ms/new-console-template for more information
 using NLog;
-
 // See https://aka.ms/new-console-template for more information
 string path = Directory.GetCurrentDirectory() + "\\nlog.config";
-
 // create instance of Logger
 var logger = LogManager.LoadConfiguration(path).GetCurrentClassLogger();
-
 string movieFilePath = Directory.GetCurrentDirectory() + "\\movies.csv";
-
 logger.Info("Program started");
-
-Console.WriteLine("Hello World!");
-
-
-
-//Create instance of Movie Class
-Movie movie = new Movie
-{
-  movieId = 1,
-  title = "Jeff's Killer Movie (2019)",
-  genres = new List<string> { "Action", "Romance", "Comedy" }
-};
-//Display Movie Instance
-Console.WriteLine(movie.Display());
-
 MovieFile movieFile = new MovieFile(movieFilePath);
-
 string choice = "";
 do
 {
@@ -38,11 +17,18 @@ do
   // input selection
   choice = Console.ReadLine();
   logger.Info("User choice: {Choice}", choice);
-
-  
   if (choice == "1")
   {
     // Add movie
+    Movie movie = new Movie();
+    // ask user to input movie title
+    Console.WriteLine("Enter movie title");
+    // input title
+    movie.title = Console.ReadLine();
+    // verify title is unique
+    if (movieFile.isUniqueTitle(movie.title)){
+      Console.WriteLine("Movie title is unique\n");
+    }
   } else if (choice == "2")
   {
     // Display All Movies
@@ -51,8 +37,5 @@ do
       Console.WriteLine(m.Display());
     }
   }
-  
 } while (choice == "1" || choice == "2");
-
-
 logger.Info("Program ended");
