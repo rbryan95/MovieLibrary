@@ -7,6 +7,9 @@ string path = Directory.GetCurrentDirectory() + "\\nlog.config";
 
 // create instance of Logger
 var logger = LogManager.LoadConfiguration(path).GetCurrentClassLogger();
+
+string movieFilePath = Directory.GetCurrentDirectory() + "\\movies.csv";
+
 logger.Info("Program started");
 
 Console.WriteLine("Hello World!");
@@ -22,5 +25,7 @@ Movie movie = new Movie
 };
 //Display Movie Instance
 Console.WriteLine(movie.Display());
+
+MovieFile movieFile = new MovieFile(movieFilePath);
 
 logger.Info("Program ended");
