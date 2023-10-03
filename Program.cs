@@ -11,7 +11,7 @@ logger.Info("Program started");
 
 Console.WriteLine("Hello World!");
 
-logger.Info("Program ended");
+
 
 //Create instance of Movie Class
 Movie movie = new Movie
@@ -20,3 +20,7 @@ Movie movie = new Movie
   title = "Jeff's Killer Movie (2019)",
   genres = new List<string> { "Action", "Romance", "Comedy" }
 };
+//Display Movie Instance
+Console.WriteLine(movie.Display());
+
+logger.Info("Program ended");
